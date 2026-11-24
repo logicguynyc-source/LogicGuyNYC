@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LSAT Tutor NYC | The Logic Guy of NYC</title>
+<meta name="description" content="Private LSAT tutoring in New York City and online with Bryan Doniger. In 2026 the median score among my students was a 168, and more than 4 in 10 scored 170 or higher.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+  /* Layout idea: one scrolling page, cream ground, deep green bands bracketing the proof. */
+  :root {
+    --paper: #FFFDF7;
+    --ink: #15150F;
+    --muted: #5A6158;
+    --green: #15543C;
+    --green-soft: #E8F0EA;
+    --yellow: #FFD60A;
+    --rule: #DEDCD0;
+    --display: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif;
+    --body: 'Source Serif 4', Georgia, serif;
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+  }
+
+  .wrap { width: 100%; max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+
+  a { color: var(--green); }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+
+  /* ---------- nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 20;
+    background: var(--green); color: #fff;
+  }
+  .nav-inner {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px 26px;
+    padding: 12px 24px; max-width: 1060px; margin: 0 auto;
+  }
+  .brand {
+    font-family: var(--display); font-weight: 800; font-size: 19px;
+    letter-spacing: -0.02em; margin-right: auto; color: #fff; text-decoration: none;
+  }
+  .nav-inner a.navlink {
+    color: rgba(255,255,255,0.88); text-decoration: none;
+    font-family: var(--display); font-weight: 500; font-size: 15px;
+  }
+  .nav-inner a.navlink:hover { color: #fff; text-decoration: underline; }
+  .nav-cta {
+    background: var(--yellow); color: var(--ink); text-decoration: none;
+    font-family: var(--display); font-weight: 700; font-size: 15px;
+    padding: 8px 15px; border-radius: 7px;
+  }
+  .nav-cta:hover { background: #FFE14D; }
+
+  /* ---------- hero ---------- */
+  header.hero { padding: 54px 0 46px; }
+  .hero-grid {
+    display: grid; grid-template-columns: 300px 1fr; gap: 44px; align-items: start;
+  }
+  .portrait {
+    width: 100%; aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden;
+    border: 6px solid var(--yellow); background: #EDEDE6; position: relative;
+    margin-top: 5px;
+  }
+  .portrait img {
+    position: absolute; width: 218%; max-width: none; left: -97%; top: -33%;
+  }
+  h1 {
+    font-family: var(--display); font-weight: 800; font-size: clamp(34px, 5vw, 50px);
+    line-height: 1.02; letter-spacing: -0.03em; margin: 0 0 16px; text-wrap: balance;
+  }
+  .tagline {
+    font-family: var(--display); font-weight: 500; font-size: clamp(20px, 2.6vw, 25px);
+    line-height: 1.25; margin: 0 0 24px; color: var(--green); text-wrap: balance;
+  }
+  .hero-lede { max-width: 56ch; margin: 0 0 26px; }
+  .hero-lede p { margin: 0 0 14px; font-size: 17.5px; }
+  .hero-lede p:last-child { margin-bottom: 0; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .btn {
+    display: inline-block; text-decoration: none; font-family: var(--display);
+    font-weight: 700; font-size: 17px; padding: 13px 22px; border-radius: 9px;
+  }
+  .btn-main { background: var(--green); color: #fff; }
+  .btn-main:hover { background: #0F3F2C; }
+  .btn-ghost { background: transparent; color: var(--ink); border: 2px solid var(--ink); }
+  .btn-ghost:hover { background: var(--ink); color: var(--paper); }
+  .hero-contact { margin-top: 16px; font-size: 16px; color: var(--muted); }
+  .hero-contact a { color: var(--muted); }
+
+  /* ---------- bands ---------- */
+  section { padding: 52px 0; }
+  .band-green { background: var(--green); color: #fff; }
+  .band-green h2, .band-green h3 { color: #fff; }
+  .band-soft { background: var(--green-soft); }
+  .band-dark { background: #121410; color: #F4F3EC; }
+
+  h2 {
+    font-family: var(--display); font-weight: 800; font-size: clamp(27px, 3.4vw, 34px);
+    letter-spacing: -0.02em; line-height: 1.12; margin: 0 0 6px; text-wrap: balance;
+  }
+  .kicker { font-family: var(--display); font-weight: 600; font-size: 17px; color: var(--muted); margin: 0 0 28px; }
+  .band-green .kicker { color: rgba(255,255,255,0.82); }
+
+  /* ---------- stats ---------- */
+  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-bottom: 36px; }
+  .stat { background: rgba(255,255,255,0.09); border-radius: 12px; padding: 20px 22px; }
+  .stat .num {
+    font-family: var(--display); font-weight: 800; font-size: 46px; line-height: 1;
+    font-variant-numeric: tabular-nums; color: var(--yellow);
+  }
+  .stat .lab { font-size: 16px; margin-top: 9px; line-height: 1.35; }
+  .stat .sub { font-size: 14px; color: rgba(255,255,255,0.72); margin-top: 3px; }
+  .stat.solo {
+    display: flex; align-items: center; gap: 24px;
+    margin: 26px 0 0; padding: 22px 26px;
+  }
+  .stat.solo .num { font-size: 62px; }
+  .stat.solo .lab { font-size: 20px; font-family: var(--display); font-weight: 700; margin-top: 0; }
+  .stat.solo .sub { font-size: 15px; }
+
+  /* ---------- bars ---------- */
+  .bars { display: flex; flex-direction: column; gap: 17px; }
+  .barrow { display: flex; align-items: center; gap: 16px; }
+  .barlab {
+    width: 62px; flex: 0 0 auto; font-family: var(--display); font-weight: 700;
+    font-size: 18px; font-variant-numeric: tabular-nums;
+  }
+  .barpair { flex: 1 1 auto; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .barline { display: flex; align-items: center; gap: 10px; }
+  .bar { height: 19px; border-radius: 5px; }
+  .bar.mine { background: var(--yellow); }
+  .bar.nat { background: rgba(255,255,255,0.3); }
+  .barval { font-family: var(--display); font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .barval.dim { font-weight: 500; color: rgba(255,255,255,0.78); }
+  .legend { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 22px; font-size: 14px; color: rgba(255,255,255,0.85); }
+  .legend span { display: inline-flex; align-items: center; gap: 8px; }
+  .swatch { width: 13px; height: 13px; border-radius: 3px; display: inline-block; }
+  .note {
+    margin-top: 26px; padding: 15px 20px; border-radius: 11px;
+    background: rgba(0,0,0,0.22); font-size: 16px; line-height: 1.5;
+  }
+
+  /* ---------- about ---------- */
+  .prose { max-width: 62ch; }
+  .prose p { margin: 0 0 17px; }
+  .prose p:last-child { margin-bottom: 0; }
+  .learnable { color: var(--green); font-weight: 600; }
+
+  /* ---------- testimonials ---------- */
+  .quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-bottom: 34px; }
+  .quote {
+    background: rgba(255,255,255,0.055); border-radius: 12px; padding: 20px 22px;
+  }
+  .quote p { margin: 0; font-size: 17px; line-height: 1.5; }
+  .quote.wide { grid-column: 1 / -1; }
+  .schools-lead { font-family: var(--display); font-weight: 700; font-size: 17px; margin: 40px 0 14px; }
+  .schools { list-style: none; display: flex; flex-wrap: wrap; gap: 9px; margin: 0; padding: 0; }
+  .schools li {
+    font-family: var(--display); font-weight: 600; font-size: 15px;
+    padding: 7px 14px; border: 1px solid rgba(255,255,255,0.22); border-radius: 999px;
+  }
+  .schools li.more { border-style: dashed; color: #A8A89C; font-weight: 500; }
+  .quotes.stack { grid-template-columns: 1fr; gap: 14px; }
+  .quotes.stack .quote p { max-width: 76ch; }
+  .quote .who { display: block; margin-top: 11px; font-family: var(--display); font-size: 14px; font-weight: 600; color: #B9C9BD; }
+  .subhead {
+    font-family: var(--display); font-weight: 700; font-size: 20px;
+    margin: 40px 0 6px; letter-spacing: -0.015em;
+  }
+  .subnote { font-size: 15px; color: #A8A89C; margin: 0 0 22px; }
+  .shots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; align-items: start; }
+  .shots a { display: block; border-radius: 10px; overflow: hidden; }
+  .shots img { width: 100%; max-width: 100%; display: block; background: #000; }
+  .shot-note { font-size: 14px; color: #A8A89C; margin-top: 16px; }
+
+  /* ---------- booking ---------- */
+  .closer { text-align: center; padding: 58px 0 62px; }
+  .closer h2 { margin-bottom: 12px; }
+  .closer-line { max-width: 48ch; margin: 0 auto 26px; color: var(--muted); }
+  .closer-contact { margin: 20px 0 0; font-size: 16px; color: var(--muted); }
+  .closer-contact a { color: var(--muted); }
+
+  footer {
+    background: var(--ink); color: rgba(255,255,255,0.7);
+    padding: 30px 0; font-size: 15px;
+  }
+  footer a { color: rgba(255,255,255,0.9); }
+  .footrow { display: flex; flex-wrap: wrap; gap: 10px 26px; align-items: baseline; }
+  .footrow .sp { margin-left: auto; }
+
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 28px; }
+    .portrait { max-width: 260px; }
+    .stats { grid-template-columns: 1fr; }
+    .quotes, .shots { grid-template-columns: 1fr; }
+    .barlab { width: 54px; font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="#top">The Logic Guy of NYC</a>
+    <a class="navlink" href="#results">Results</a>
+    <a class="navlink" href="#about">About</a>
+    <a class="navlink" href="#method">My approach</a>
+    <a class="navlink" href="#testimonials">Testimonials</a>
+    <a class="nav-cta" href="https://calendly.com/donib074-newschool/30min">Book a free call</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="portrait">
+      <img src="images/bryan.png" alt="Bryan Doniger, LSAT tutor in New York City">
+    </div>
+    <div>
+      <h1>Greetings! I am Bryan Doniger, the Logic Guy of NYC</h1>
+      <p class="tagline">I can teach anything to anyone. The LSAT especially. Let me prove it to you today!</p>
+      <div class="hero-lede">
+        <p>I'm a seasoned LSAT tutor, with over 8 years of tutoring experience. I've taught the LSAT almost exclusively for the past 5 years. Nothing makes me happier than watching my students gain confidence and skill as they learn how to ace this challenging yet <span class="learnable">~very learnable~</span> exam.</p>
+        <p>I scored a 175 on the LSAT, and many of my students have surpassed me and scored even higher!</p>
+        <p>I teach in person around New York City, or on Zoom from anywhere. I also tutor the GRE, where I scored in the 99th percentile.</p>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn-main" href="https://calendly.com/donib074-newschool/30min">Book a free phone call</a>
+      </div>
+      <p class="hero-contact">
+        Private LSAT tutoring in New York City and online &nbsp;·&nbsp;
+        <a href="tel:+17204278221">(720) 427-8221</a> &nbsp;·&nbsp;
+        <a href="mailto:logicguynyc@gmail.com">logicguynyc@gmail.com</a>
+      </p>
+    </div>
+  </div>
+</header>
+
+<section class="band-green" id="results">
+  <div class="wrap">
+    <h2>How my 2026 students did</h2>
+    <p class="kicker">(They killed it!)</p>
+
+    <h3 style="font-family: var(--display); font-weight: 700; font-size: 20px; margin: 0 0 16px;">Against the national curve</h3>
+    <div class="bars">
+      <div class="barrow">
+        <div class="barlab">175+</div>
+        <div class="barpair">
+          <div class="barline"><div class="bar mine" style="width: 13%"></div><div class="barval">13%</div></div>
+          <div class="barline"><div class="bar nat" style="width: 1.3%"></div><div class="barval dim">~1%</div></div>
+        </div>
+      </div>
+      <div class="barrow">
+        <div class="barlab">170+</div>
+        <div class="barpair">
+          <div class="barline"><div class="bar mine" style="width: 44%"></div><div class="barval">44%</div></div>
+          <div class="barline"><div class="bar nat" style="width: 6%"></div><div class="barval dim">~6%</div></div>
+        </div>
+      </div>
+      <div class="barrow">
+        <div class="barlab">160+</div>
+        <div class="barpair">
+          <div class="barline"><div class="bar mine" style="width: 88%"></div><div class="barval">88%</div></div>
+          <div class="barline"><div class="bar nat" style="width: 29%"></div><div class="barval dim">~29%</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="legend">
+      <span><i class="swatch" style="background: var(--yellow)"></i>My students</span>
+      <span><i class="swatch" style="background: rgba(255,255,255,0.3)"></i>All LSAT takers nationwide</span>
+    </div>
+
+    <p class="note">These are the official test-day scores of <strong>every student</strong> who worked with me for more than one lesson in 2026, not just my best results. National figures come from <a href="https://www.lsac.org/data-research/data/lsat-percentiles" style="color: var(--yellow)">LSAC's percentile table</a>.</p>
+
+    <div class="stat solo">
+      <div class="num">168</div>
+      <div>
+        <div class="lab">Median score</div>
+        <div class="sub">The top 9% of test takers nationally</div>
+      </div>
+    </div>
+
+    <p class="schools-lead">...and my students keep on killing it after test day! In the last two years, I've had students accepted into:</p>
+    <ul class="schools">
+      <li>Yale</li><li>Harvard</li><li>Chicago</li><li>NYU</li><li>Virginia</li>
+      <li>Michigan</li><li>Berkeley</li><li>UCLA</li><li>Georgetown</li><li>Boston College</li>
+      <li class="more">among others</li>
+    </ul>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <h2>About me</h2>
+    <p class="kicker">How I got here.</p>
+    <div class="prose">
+      <p>I graduated magna cum laude with a degree in English from Amherst College. While in undergraduate, I started tutoring, and I quickly discovered that helping other people reach their full academic potential in a one-on-one setting is extremely productive and rewarding. All told, I've delivered over 3,000 hours of one-on-one lessons. I got a 99.5th percentile score on the LSAT (175), and I've also helped many of my own students achieve similar success!</p>
+    </div>
+  </div>
+</section>
+
+<section class="band-soft" id="method">
+  <div class="wrap">
+    <h2>My Approach</h2>
+    <div class="prose">
+      <p>Many LSAT companies make the test way more complicated than it needs to be. Said companies collect millions of dollars, and in the process they cause thousands of young Americans to fall victim to <a href="https://www.nytimes.com/2023/04/30/opinion/loneliness-epidemic-america.html" target="_blank" rel="noopener">our nation's ongoing loneliness and mental health epidemic</a>.</p>
+      <p>My job is to help my clients develop simple, effective strategies that they can apply to pretty much every LSAT problem they confront! Did you know, for example, that all problems in the logical reasoning section can be categorized as one of three easy-to-understand question types? Or that you can diagram an "unless" claim the exact same way you diagram an "or" claim? Or that basically every question whose stem calls the passage "information" (rather than an argument) is a must-be-true question in disguise? Nothing makes me happier than watching LSAT students who were once intimidated by the test learn how to ace it!</p>
+      <p>During the first few weeks of lessons, I introduce a few core strategies that are designed to help students improve their test pacing, their process of elimination, and their attention to detail. I then give my students homework assignments designed to solidify these habits and strategies, so that they quickly start to feel like second nature. I tend to be a very encouraging and enthusiastic tutor; more than anything, I want students to feel more confident in their own intelligence and test taking ability after working with me. On test day, my tutees go into the exam room confident that they have all the tools they need!</p>
+    </div>
+  </div>
+</section>
+
+<section class="band-dark" id="testimonials">
+  <div class="wrap">
+    <h2>The texts I get after test day</h2>
+    <p class="kicker" style="color: #A8A89C;">My favorite part of the job. Numbers removed and names anonymized.</p>
+
+    <div class="quotes stack">
+      <div class="quote">
+        <p>"Scores came out this morning and I somehow got a 178! Thank you so much for all your help. You were an unbelievably good tutor and I really, really enjoyed studying for this test with you."</p>
+      </div>
+      <div class="quote">
+        <p>"I got into BC, with a 25k/year scholarship! Still waiting to hear back from several, but this puts me in a position I'm really happy with."</p>
+      </div>
+      <div class="quote">
+        <p>"Super excited about acceptances to CUNY and Cardozo, with a full ride. I doubt that scholarship at Cardozo would have been possible without the LSAT score!"</p>
+      </div>
+      <div class="quote">
+        <p>"Final practice test was a 178! ... Feeling very well prepared going into Wednesday. Thank you Bryan sensei for all your help."</p>
+      </div>
+      <div class="quote">
+        <p>"Hey! I got a 173. ... I really appreciate your help and support! You've helped me a lot and I am really thankful for our lessons. You are a great teacher!"</p>
+      </div>
+      <div class="quote">
+        <p>"Just wanted to let you know about some good news that I got into Georgetown Law! ... thank you again for all your time and investment in my application process"</p>
+      </div>
+    </div>
+
+    <div class="shots">
+      <a href="images/shot-6.png" target="_blank" rel="noopener"><img src="images/shot-6.png" alt="A student texts his official April score report, a 178 in the 99th percentile, and I reply that I knew he would get there"></a>
+      <a href="images/shot-2.png" target="_blank" rel="noopener"><img src="images/shot-2.png" alt="A long message telling me scores came out that morning and the student somehow got a 178, and thanking me for the help"></a>
+      <a href="images/shot-3.png" target="_blank" rel="noopener"><img src="images/shot-3.png" alt="A student texts that they got into Boston College with a twenty five thousand dollar a year scholarship"></a>
+      <a href="images/shot-4.png" target="_blank" rel="noopener"><img src="images/shot-4.png" alt="A student lists acceptances to CUNY and Cardozo with a full ride, and says the scholarship would not have been possible without the LSAT score"></a>
+      <a href="images/shot-5.png" target="_blank" rel="noopener"><img src="images/shot-5.png" alt="A student shares a practice test jumping to a 176 and says now they just have to do it on the real test"></a>
+      <a href="images/shot-1.png" target="_blank" rel="noopener"><img src="images/shot-1.png" alt="A student reports missing only one question on reading comprehension and hitting their highest practice score ever"></a>
+    </div>
+    <p class="shot-note">Click any screenshot to see it full size.</p>
+    <h3 class="subhead">And what they say about the lessons themselves</h3>
+
+    <div class="quotes" style="margin-bottom: 0;">
+      <div class="quote wide">
+        <p>"I worked with Bryan every week for nearly four months, and it could not have been more helpful having him as a tutor. He is incredibly smart, very patient, and most importantly a very good teacher. Before working with Bryan, I tried out two other tutors, one of whom had been helping write a famous LSAT prep course for 30 years before retiring and clearly knew the test inside out. Bryan was 10x better. Unlike the first guy, it felt like Bryan was invested in my journey. He genuinely cared about helping me improve and clearly spent effort tailoring his teaching to my needs and thinking about what the best strategies would be for me."</p>
+        <span class="who">Liam</span>
+      </div>
+      <div class="quote">
+        <p>"Bryan is incredibly knowledgeable and patient. He helps you work through any questions you have but also teaches you how to apply the skills and learn how to work through the problems on your own."</p>
+        <span class="who">Morgan</span>
+      </div>
+      <div class="quote">
+        <p>"My first session with Bryan was fantastic! I had already been somewhat familiar with the LR question types and Bryan made clear several of the concepts that had not yet been solidified in my brain. He is such a pleasure to work with, and it feels like he really cares about my success and growth. Extremely prepared and dedicated."</p>
+        <span class="who">Sydney</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="start" class="closer">
+  <div class="wrap">
+    <h2>Book a free call</h2>
+    <p class="closer-line">Pick a time that works for you. No charge and no obligation, and I'll tell you honestly whether I think I can help.</p>
+    <a class="btn btn-main" href="https://calendly.com/donib074-newschool/30min">See available times</a>
+    <p class="closer-contact">
+      Or reach me directly at <a href="tel:+17204278221">(720) 427-8221</a> or <a href="mailto:logicguynyc@gmail.com">logicguynyc@gmail.com</a>
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footrow">
+    <span>Bryan Doniger &nbsp;·&nbsp; LSAT tutoring in New York City and online</span>
+    <span class="sp"><a href="mailto:logicguynyc@gmail.com">logicguynyc@gmail.com</a> &nbsp;·&nbsp; <a href="tel:+17204278221">(720) 427-8221</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
